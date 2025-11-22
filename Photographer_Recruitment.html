@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招聘海报 - 光影掌控者</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .font-serif-en {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* 黄金渐变文字 */
+        .gold-text {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 呼吸动画 */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        .lens-reflection {
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        /* 噪点纹理背景 */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* 扫描线动画 */
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 relative selection:bg-yellow-900 selection:text-white">
+
+    <!-- 噪点层 -->
+    <div class="noise-bg"></div>
+
+    <!-- 海报主体容器 -->
+    <main class="relative w-full max-w-lg bg-gradient-to-b from-gray-900 to-black shadow-2xl overflow-hidden border border-gray-800 flex flex-col items-center text-center py-16 px-8">
+        
+        <!-- 装饰线条 -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-700 to-transparent opacity-50"></div>
+
+        <!-- 顶部 Logo 区域 -->
+        <div class="mb-12 opacity-90">
+            <!-- 使用用户提供的图片作为顶部 Logo -->
+            <img src="assets/logo.jpg" alt="公司 Logo" class="h-28 w-auto mx-auto mix-blend-lighten brightness-125 contrast-110 drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]">
+        </div>
+
+        <!-- 核心视觉：光圈 -->
+        <div class="relative mb-14">
+            <!-- 外发光 -->
+            <div class="absolute inset-0 bg-yellow-600/10 blur-[60px] rounded-full"></div>
+            
+            <!-- 镜头结构 -->
+            <div class="relative w-64 h-64 rounded-full border border-gray-800 bg-black flex items-center justify-center shadow-2xl">
+                <!-- 金色装饰圈 -->
+                <div class="absolute inset-0 rounded-full border border-yellow-600/20 m-2"></div>
+                <div class="absolute inset-0 rounded-full border border-yellow-600/10 m-6"></div>
+                
+                <!-- 叶片层叠 (纯CSS模拟) -->
+                <div class="absolute w-full h-full rounded-full opacity-40" style="background: conic-gradient(from 0deg, transparent 0deg, #222 10deg, transparent 20deg, transparent 30deg, #222 40deg, transparent 50deg, transparent 60deg, #222 70deg, transparent 80deg);"></div>
+                <div class="absolute w-full h-full rounded-full opacity-30" style="background: conic-gradient(from 45deg, transparent 0deg, #333 10deg, transparent 20deg, transparent 30deg, #333 40deg, transparent 50deg, transparent 60deg, #333 70deg, transparent 80deg);"></div>
+                
+                <!-- 镜头反光中心 -->
+                <div class="lens-reflection w-24 h-24 bg-gradient-to-br from-gray-800 to-black rounded-full border border-gray-700 relative overflow-hidden flex items-center justify-center">
+                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-white blur-xl opacity-20"></div>
+                    <div class="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标题区域 -->
+        <div class="relative z-10 mb-10">
+            <h2 class="text-xs text-yellow-600/80 tracking-[0.6em] uppercase mb-3 font-serif-en">We are looking for</h2>
+            <h1 class="text-5xl md:text-6xl font-bold tracking-wider leading-tight mb-4">
+                <span class="gold-text">光影</span><span class="text-gray-700 mx-2 font-thin">/</span>掌控者
+            </h1>
+            <p class="text-[10px] text-gray-500 tracking-[0.8em] uppercase border-b border-gray-800 pb-6 mx-auto w-3/4">
+                The Master of Light
+            </p>
+        </div>
+
+        <!-- 文案区域 -->
+        <div class="space-y-4 mb-16 max-w-xs mx-auto">
+            <p class="text-gray-300 font-light text-sm tracking-widest leading-loose">
+                你的镜头<br>
+                定义世界的角度
+            </p>
+            <p class="text-gray-500 font-light text-xs tracking-widest leading-loose">
+                在明暗交织中，寻找极致的平衡<br>
+                加入我们，重塑非凡
+            </p>
+        </div>
+
+        <!-- 底部 CTA 区域 -->
+        <div class="w-full mt-auto flex flex-col items-center">
+            <!-- 二维码区域：使用用户提供的二维码图片 -->
+            <div class="relative w-32 h-32 bg-white/5 p-2 mb-4 group cursor-pointer rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(191,149,63,0.3)] border border-yellow-900/30">
+                
+                <!-- 核心修改：使用用户提供的二维码图片 -->
+                <img src="assets/wechat-qr.jpg" 
+                     alt="扫码投递 - 英雄帖" 
+                     class="w-full h-full object-cover rounded-sm opacity-90 mix-blend-lighten" />
+                
+                <!-- 扫描线动画 (保留作为装饰，增加科技感) -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500/50 shadow-[0_0_10px_#bf953f] animate-[scan_2s_ease-in-out_infinite] pointer-events-none z-10"></div>
+            </div>
+            
+            <p class="text-yellow-700/80 text-[10px] tracking-[0.2em] uppercase font-serif-en mb-8">
+                Scan to Apply
+            </p>
+
+            <!-- 底部 Logo 区域：使用用户提供的 Logo 图片 -->
+            <div class="flex items-center space-x-3 opacity-100">
+                <img src="assets/logo.jpg" alt="公司 Logo" class="h-8 w-auto mix-blend-lighten brightness-125 contrast-110 drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]">
+                <span class="text-xs tracking-[0.2em] text-gray-100 font-light">微瞬智能(Vision Intelligence)</span>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
